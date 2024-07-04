@@ -1,0 +1,312 @@
+{
+	"info": {
+		"_postman_id": "43f70766-6833-45d5-864f-45e0460d7dc1",
+		"name": "BeonAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2062297"
+	},
+	"item": [
+		{
+			"name": "GetToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const res = pm.response.json()",
+							"",
+							"pm.test(\"Response body has a TokenString property\", function () {",
+							"  pm.expect(res).to.have.property('TokenString');",
+							"});",
+							"",
+							"pm.test(\"Response body has a UserEmail property\", function () {",
+							"  pm.expect(res).to.have.property('UserEmail');",
+							"});",
+							"",
+							"pm.test(\"Response body has a ExpirationTime property\", function () {",
+							"  pm.expect(res).to.have.property('ExpirationTime');",
+							"});",
+							"",
+							"pm.environment.set('token', res.TokenString)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic YmVvbkBhdXRvbWF0aW9uLmNvbToxMjM0NTY3OA==",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://todo.ly/api/authentication/token.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"authentication",
+						"token.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateProject",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const res = pm.response.json()",
+							"",
+							"pm.test(\"Response body has a Id property\", function () {",
+							"  pm.expect(res).to.have.property('Id');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Content property\", function () {",
+							"  pm.expect(res).to.have.property('Content');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Icon property\", function () {",
+							"  pm.expect(res).to.have.property('Icon');",
+							"});",
+							"",
+							"pm.environment.set('projectID', res.Id)"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Content\": \"AProjectName\",\n    \"Icon\": 4\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo.ly/api/projects.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"projects.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProjectByID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const res = pm.response.json()",
+							"",
+							"pm.test(\"Response body has a Id property\", function () {",
+							"  pm.expect(res).to.have.property('Id');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Content property\", function () {",
+							"  pm.expect(res).to.have.property('Content');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Icon property\", function () {",
+							"  pm.expect(res).to.have.property('Icon');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://todo.ly/api/projects/{{projectID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"projects",
+						"{{projectID}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateProject",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const res = pm.response.json()",
+							"",
+							"pm.test(\"Response body has a Id property\", function () {",
+							"  pm.expect(res).to.have.property('Id');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Content property\", function () {",
+							"  pm.expect(res).to.have.property('Content');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Icon property\", function () {",
+							"  pm.expect(res).to.have.property('Icon');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"Icon\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://todo.ly/api/projects/{{projectID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"projects",
+						"{{projectID}}.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteProject",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const res = pm.response.json()",
+							"",
+							"pm.test(\"Response body has a Id property\", function () {",
+							"  pm.expect(res).to.have.property('Id');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Content property\", function () {",
+							"  pm.expect(res).to.have.property('Content');",
+							"});",
+							"",
+							"pm.test(\"Response body has a Icon property\", function () {",
+							"  pm.expect(res).to.have.property('Icon');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Token",
+						"value": "{{token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://todo.ly/api/projects/{{projectID}}.json",
+					"protocol": "https",
+					"host": [
+						"todo",
+						"ly"
+					],
+					"path": [
+						"api",
+						"projects",
+						"{{projectID}}.json"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
